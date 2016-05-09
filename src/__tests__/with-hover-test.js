@@ -17,10 +17,16 @@ describe('WithHover()(Component)', () => {
     it('renders', () => { expect(subject).toBeTruthy() })
     it('renders inner component', () => { expect(subject.find(Header).length).toBe(1) })
     it('injects hover property', () => { expect(subject.find(Header).prop('hover')).toBe(false) })
+    it('reacts to mouseenter then mouseleave', () => {
+      subject.simulate('mouseenter')
+      expect(subject.find(Header).prop('hover')).toBe(true)
+      subject.simulate('mouseleave')
+      expect(subject.find(Header).prop('hover')).toBe(false)
+    })
   })
 
   describe('when composing with a custom transform function', () => {
-    const Decorated = WithHover((flag) => ({ mouseOver: flag }))(Header)
+    const Decorated = WithHover({ transform: (flag) => ({ mouseOver: flag }) })(Header)
 
     beforeEach(() => { subject = mount(<Decorated title={'My title'} />) })
 

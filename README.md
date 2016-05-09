@@ -20,13 +20,23 @@ const Decorated = WithHover()(Header)
 
 Now when you use `<Decorated />` it will pass a boolean property `hover`.
 
-You can also change the property name by passing a function, example:
+You can change the property name by passing a function, example:
 
 ```js
-const Decorated = WithHover((flag) => ({ mouseOver: flag }))(Header)
+const Decorated = WithHover(
+  { transform: (flag) => ({ mouseOver: flag }) }
+)(Header)
 ```
 
-Then the property passed to the `Header` component is `mouseOver`
+The property passed to the `Header` would change to `mouseOver`
+
+You can also change the wrapper div style to meet your needs like:
+
+```js
+const Decorated = WithHover(
+  { containerStyle: { display: 'inline-block' } }
+)(Header)
+```
 
 ## Contributing
 

@@ -1,40 +1,45 @@
 import React, { Component, PropTypes } from 'react'
 
-export default (
-  transform = (hover) => ({ hover })
-) => (InnerComponent) =>
-  class WithHover extends Component {
-    static propTypes = {
-      onMouseEnter: PropTypes.func,
-      onMouseLeave: PropTypes.func,
-    }
+const withHover = ({
+  transform = ((hover) => ({ hover })),
+  containerStyle = ({
+    width: '100%',
+    height: '100%',
+    padding: 0,
+    border: 0,
+  }),
+} = {}) => (BaseComponent) => class extends Component {
+  static propTypes = {
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+  }
 
-    state = {
-      hover: false,
-    }
+  state = {
+    hover: false
+  }
 
-    onMouseEnter(...args) {
-      if (!this.state.hover) { this.setState({ hover: true }) }
-      if (this.props.onMouseEnter) {
-        this.props.onMouseEnter(...args)
-      }
-    }
+  onMouseEnter = () => {
+    if (!this.state.hover) { this.setState({ hover: true }) }
+  }
 
-    onMouseLeave(...args) {
-      if (this.state.hover) { this.setState({ hover: false }) }
-      if (this.props.onMouseLeave) {
-        this.props.onMouseLeave(...args)
-      }
-    }
+  onMouseLeave = () => {
+    if (this.state.hover) { this.setState({ hover: false }) }
+  }
 
-    render() {
-      return (
-        <InnerComponent
+  render() {
+    return (
+      <div
+        style={containerStyle}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+      >
+        <BaseComponent
           {...transform(this.state.hover)}
           {...this.props}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
         />
-      )
-    }
+      </div>
+    )
   }
+}
+
+export default withHover
