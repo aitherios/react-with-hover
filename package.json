@@ -61,5 +61,8 @@
       "enzyme"
     ],
     "rootDir": "./src"
+  },
+  "dependencies": {
+    "recompose": ">= 0.19.0 < 1.0"
   }
 }

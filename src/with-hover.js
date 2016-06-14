@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import wrapDisplayName from 'recompose/wrapDisplayName'
 
 const withHover = ({
   transform = ((hover) => ({ hover })),
@@ -9,6 +10,8 @@ const withHover = ({
     border: 0,
   }),
 } = {}) => (BaseComponent) => class extends Component {
+  static displayName = wrapDisplayName(BaseComponent, 'withHover')
+
   static propTypes = {
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
