@@ -28,6 +28,9 @@
     "url": "https://github.com/team-magneto/react-with-hover/issues"
   },
   "homepage": "https://github.com/team-magneto/react-with-hover#readme",
+  "dependencies": {
+    "recompose": ">= 0.19.0 < 1.0"
+  },
   "peerDependencies": {
     "react": "~15"
   },
@@ -62,7 +65,25 @@
     ],
     "rootDir": "./src"
   },
-  "dependencies": {
-    "recompose": ">= 0.19.0 < 1.0"
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jasmine": true,
+      "jest": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+      "semi": 0,
+      "new-cap": 0
+    }
   }
 }

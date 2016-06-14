@@ -18,7 +18,7 @@ const withHover = ({
   }
 
   state = {
-    hover: false
+    hover: false,
   }
 
   onMouseEnter = () => {
