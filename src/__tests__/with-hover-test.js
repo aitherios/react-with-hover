@@ -23,6 +23,9 @@ describe('WithHover()(Component)', () => {
       subject.simulate('mouseleave')
       expect(subject.find(Header).prop('hover')).toBe(false)
     })
+    it('defines a displayName', () => {
+      expect(Decorated.displayName).toBe('withHover(Header)')
+    })
   })
 
   describe('when composing with a custom transform function', () => {
