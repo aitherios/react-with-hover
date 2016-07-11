@@ -1,14 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import wrapDisplayName from 'recompose/wrapDisplayName'
 
+const defaultTransform = (hover) => ({ hover })
+
+const defaultContainerStyle = {
+  width: '100%',
+  height: '100%',
+  padding: 0,
+  border: 0,
+}
+
 const withHover = ({
-  transform = ((hover) => ({ hover })),
-  containerStyle = ({
-    width: '100%',
-    height: '100%',
-    padding: 0,
-    border: 0,
-  }),
+  transform = defaultTransform,
+  containerStyle = defaultContainerStyle,
 } = {}) => (BaseComponent) => class extends Component {
   static displayName = wrapDisplayName(BaseComponent, 'withHover')
 
