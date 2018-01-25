@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import wrapDisplayName from 'recompose/wrapDisplayName'
 
 const defaultTransform = (hover) => ({ hover })
@@ -19,6 +20,12 @@ const withHover = ({
   static propTypes = {
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props);
+    this.onMouseEnter = this.onMouseEnter.bind(this)
+    this.onMouseLeave = this.onMouseLeave.bind(this)
   }
 
   state = {
