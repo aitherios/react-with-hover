@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import wrapDisplayName from 'recompose/wrapDisplayName'
 
-const defaultTransform = (hover) => ({ hover })
+/* eslint react/jsx-filename-extension: "off" */
+
+const defaultTransform = hover => ({ hover })
 
 const defaultContainerStyle = {
   width: '100%',
@@ -11,15 +13,22 @@ const defaultContainerStyle = {
   border: 0,
 }
 
+function noOp() {}
+
 const withHover = ({
   transform = defaultTransform,
   containerStyle = defaultContainerStyle,
-} = {}) => (BaseComponent) => class extends Component {
+} = {}) => BaseComponent => class extends Component {
   static displayName = wrapDisplayName(BaseComponent, 'withHover')
 
   static propTypes = {
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onMouseEnter: noOp,
+    onMouseLeave: noOp,
   }
 
   constructor(props) {

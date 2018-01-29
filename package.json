@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/team-767/react-with-hover#readme",
   "dependencies": {
-    "recompose": ">= 0.26.0"
+    "recompose": ">= 0.26.0",
+    "prop-types": ">= 15.0.0"
   },
   "peerDependencies": {
     "react": ">= 0.15"
@@ -52,7 +53,6 @@
     "jest-cli": "^22.1.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "prop-types": "^15.6.0",
     "webpack": "^3.10.0"
   },
   "jest": {
