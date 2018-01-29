@@ -3,11 +3,12 @@ jest.unmock('../with-hover')
 import React from 'react'
 import WithHover from '../with-hover'
 import { mount } from 'enzyme'
+import PropTypes from 'prop-types';
 
 describe('WithHover()(Component)', () => {
   let subject
   const Header = ({ title }) => (<h1>{title}</h1>)
-  Header.propTypes = { title: React.PropTypes.string }
+  Header.propTypes = { title: PropTypes.string }
 
   describe('when composing with default transform function', () => {
     const Decorated = WithHover()(Header)
